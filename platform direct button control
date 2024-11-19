@@ -23,7 +23,7 @@ Servo myservo3; // Servo 3
 
 int servo1_pos = 90;  // Posición inicial del servo 1
 int servo2_pos = 90;  // Posición inicial del servo 2
-int servo3_pos = 90;  // Posición inicial del servo 2
+int servo3_pos = 90;  // Posición inicial del servo 3
 
 void setup() {
   // Conectar servos
