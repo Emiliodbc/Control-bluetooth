@@ -1,6 +1,6 @@
 // Joystick 1
-const int Boton_1_1 = 5;  // Botón para mover servo 1 a la derecha
-const int Boton_1_2 = 6;  // Botón para mover servo 1 a la izquierda
+const int Boton_1_1 = 8;  // Botón para mover servo 1 a la derecha
+const int Boton_1_2 = 9;  // Botón para mover servo 1 a la izquierda
 void setup() {  
 // Configuración de los pines como salida
   pinMode(2, OUTPUT);  // Dirección de la llanta 1
@@ -17,16 +17,12 @@ void setup() {
 }
 
 void loop() {
-
-  delay(5000); // Mantener movimiento durante 5 segundos
-
   // Detener todas las llantas
   analogWrite(5, 0);  // Detener llanta 1
   analogWrite(6, 0);  // Detener llanta 2
   analogWrite(9, 0);  // Detener llanta 3
   analogWrite(10, 0); // Detener llanta 4
 
-  delay(5000); // Pausa por 5 segundos antes de repetir
 }
 if (boton_1_1_estado == HIGH) {
   // Establecer velocidad para todas las llantas (valor PWM = 100)
@@ -43,7 +39,7 @@ if (boton_1_1_estado == HIGH) {
   // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
   if (boton_1_2_estado == HIGH) {
     digitalWrite(2, HIGH); // Dirección hacia adelante (llanta 1)
-    digitalWrite(0, HIGH); // Dirección hacia adelante (llanta 2)
+    digitalWrite(9, HIGH); // Dirección hacia adelante (llanta 2)
     digitalWrite(7, HIGH); // Dirección hacia adelante (llanta 3)
     digitalWrite(8, HIGH); // Dirección hacia adelante (llanta 4)  
     analogWrite(5, 100);  // Velocidad de la llanta 1
