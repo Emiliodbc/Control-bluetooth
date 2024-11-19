@@ -91,7 +91,7 @@ void loop() {
   if (boton_3_1_estado == HIGH) {
     if (servo3_pos < 180) {
       servo3_pos++;  // Mueve el servo 2 hacia la derecha
-      myservo2.write(servo3_pos);
+      myservo3.write(servo3_pos);
       delay(10);  // Retardo para evitar movimientos bruscos
     }
   }
@@ -100,7 +100,7 @@ void loop() {
   if (boton_3_2_estado == HIGH) {
     if (servo3_pos > 0) {
       servo3_pos--;  // Mueve el servo 2 hacia la izquierda
-      myservo2.write(servo3_pos);
+      myservo3.write(servo3_pos);
       delay(10);  // Retardo para evitar movimientos bruscos
     }
   }
