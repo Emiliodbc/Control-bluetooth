@@ -1,0 +1,167 @@
+#include <Servo.h>
+
+// Definición de pines para botones
+const int Boton_1_1 = 8;  // Botón para mover ambas llantas hacia adelante
+const int Boton_1_2 = 9;  // Botón para mover ambas llantas hacia atrás
+const int Boton_2_1 = 7;  // Botón para mover solo la llanta derecha hacia adelante
+const int Boton_2_2 = 10; // Botón para mover solo la llanta izquierda hacia adelante
+const int Boton_3 = 11; // boton cambio de modo
+
+
+//comand vars
+String comd = "";
+int mode = 0;    // Inicia en modo 0 (control de garra)
+int prev = 0;    // Sin estados previos
+int garaOC = 0;  // Garra inicialmente cerrada
+
+
+
+Servo myservo1; // Servo 1 (controla giro)
+Servo myservo2; // Servo 2 (controla subir/bajar)
+Servo myservo3; // Servo 3 (controla garra)
+
+int servo1_pos = 90;  // Posición inicial del servo 1
+int servo2_pos = 90;  // Posición inicial del servo 2
+int servo3_pos = 90;  // Posición inicial del servo 3
+
+void setup() {
+  // Configuración de pines como salida
+
+  pinMode(4, OUTPUT); // Dirección de la llanta 2 (izquierda)
+  pinMode(6, OUTPUT); // Velocidad de la llanta 2
+  pinMode(2, OUTPUT); // Dirección de la llanta 1 (derecha)
+  pinMode(5, OUTPUT); // Velocidad de la llanta 1
+
+// Configuración de botones como entrada
+  pinMode(Boton_1_1, INPUT);
+  pinMode(Boton_1_2, INPUT);
+  pinMode(Boton_2_1, INPUT);
+  pinMode(Boton_2_2, INPUT);
+  pinMode(Boton_3, INPUT);
+
+  // Conectar servos
+  myservo1.attach(12);  // Servo 1 en pin 11 GIRO
+  myservo2.attach(13);  // Servo 2 en pin 12 SUBIR/BAJAR
+  myservo3.attach(1);  // Servo 2 en pin 13 GARRA
+
+  //inicicia llantas apagadas
+  digitalWrite(2, LOW);
+  analogWrite(5, 0);
+  digitalWrite(4, LOW);
+  analogWrite(6, 0);
+  Serial.begin(9600);  // Inicializar comunicación serial (opcional para depuración)
+}
+
+void loop() {
+  bool boton_1_1_estado = digitalRead(Boton_1_1);
+  bool boton_1_2_estado = digitalRead(Boton_1_2);
+  bool boton_2_1_estado = digitalRead(Boton_2_1);
+  bool boton_2_2_estado = digitalRead(Boton_2_2);
+  bool boton_3_estado = digitalRead(Boton_3);
+  //if (Serial.available()){
+  //  comd = Serial.readString();  //read until timeout
+  //  comd.trim();                        // remove any \r \n whitespace at the end of the String
+  //  Serial.println(comd);
+
+    // cambiar entre manejar y garra 
+
+  if (boton_3_estado == HIGH && prev == LOW) {
+    mode = !mode;  // Alterna entre 0 y 1
+    delay(50);     // Pequeño retraso para evitar rebotes0  0
+  }
+  prev = boton_3_estado;
+    // 0 -> garra, 1-> coche
+    if (mode==0){
+        // Si el botón 1_1 está presionado, mover servo 1 a la derecha
+        if (boton_1_1_estado==1) {
+          if (servo1_pos < 180) {
+            servo1_pos++;  // Mueve el servo 1 hacia la derecha
+            myservo1.write(servo1_pos);
+            delay(10);  // Retardo para evitar movimientos bruscos
+          }
+        }
+
+        // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
+        if (boton_1_2_estado==1) {
+          if (servo1_pos > 0) {
+            servo1_pos--;  // Mueve el servo 1 hacia la izquierda
+            myservo1.write(servo1_pos);
+            delay(10);  // Retardo para evitar movimientos bruscos
+          }
+        }
+
+        // Si el botón 2_1 está presionado, mover servo 2 a la derecha
+        if (boton_2_1_estado==1) {
+          if (servo2_pos < 180) {
+            servo2_pos++;  // Mueve el servo 2 hacia la derecha
+            myservo2.write(servo2_pos);
+            delay(10);  // Retardo para evitar movimientos bruscos
+          }
+        }
+
+        // Si el botón 2_2 está presionado, mover servo 2 a la izquierda
+        if (boton_2_2_estado==1) {
+          if (servo2_pos > 0) {
+            servo2_pos--;  // Mueve el servo 2 hacia la izquierda
+            myservo2.write(servo2_pos);
+            delay(10);  // Retardo para evitar movimientos bruscos
+          }
+        }
+        //TOGGLE CLOSE OR OPEN CLAW
+        if(comd=="F"){
+          if (garaOC==0){
+          while(servo3_pos<180){
+              servo3_pos++;  // Mueve el servo 3 hacia la derecha
+              myservo3.write(servo3_pos);
+              delay(10);  // Retardo para evitar movimientos bruscos
+            }
+            mode=1;
+          } else {
+            while(servo3_pos>0){
+              servo3_pos--;  // Mueve el servo 3 hacia la derecha
+              myservo3.write(servo3_pos);
+              delay(10);  // Retardo para evitar movimientos bruscos
+            }
+            mode=0;
+          }
+          if (servo2_pos < 180) {
+
+          }
+        }
+      } else if (mode==1){
+        // Controlar el movimiento según el botón presionado
+        // Controlar el movimiento según el botón presionado
+        if (boton_1_1_estado == HIGH) {
+          // Ambas llantas hacia adelante
+          digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+          analogWrite(5, 100);    // Velocidad de la llanta 1
+          digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+          analogWrite(6, 100);    // Velocidad de la llanta 2
+        } 
+        else if (boton_1_2_estado == HIGH) {
+          // Ambas llantas hacia atrás
+          digitalWrite(2, LOW);   // Dirección hacia atrás para llanta 1
+          analogWrite(5, 100);    // Velocidad de la llanta 1
+          digitalWrite(4, HIGH);   // Dirección hacia atrás para llanta 2
+          analogWrite(6, 100);    // Velocidad de la llanta 2
+        } 
+        else if (boton_2_1_estado == HIGH) {
+          // Solo la llanta derecha hacia adelante
+          digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+          analogWrite(5, 100);    // Velocidad de la llanta 1
+          analogWrite(6, 0);      // Detener la llanta 2
+        } 
+        else if (boton_2_2_estado == HIGH) {
+          // Solo la llanta izquierda hacia adelante
+          digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+          analogWrite(6, 100);    // Velocidad de la llanta 2
+          analogWrite(5, 0);      // Detener la llanta 1
+        } 
+        else {
+          // Detener ambas llantas si no hay botones presionados
+          analogWrite(5, 0);      // Detener llanta 1
+          analogWrite(6, 0);      // Detener llanta 2
+        }
+      }
+    }
+  //}
