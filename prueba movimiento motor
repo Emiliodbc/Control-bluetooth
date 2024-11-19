@@ -39,4 +39,9 @@ if (boton_1_1_estado == HIGH) {
     digitalWrite(4, HIGH); 
     analogWrite(6, 50); //
     }
+else
+  digitalWrite(2, LOW);
+  analogWrite(5, 0); // Velocidad = 0
+  digitalWrite(4, LOW);
+  analogWrite(6, 0); // Velocidad = 0
   }
