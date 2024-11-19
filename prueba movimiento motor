@@ -11,7 +11,8 @@ void setup() {
   pinMode(9, OUTPUT);  // Velocidad de la llanta 3
   pinMode(8, OUTPUT);  // Dirección de la llanta 4
   pinMode(10, OUTPUT); // Velocidad de la llanta 4
-
+  pinMode(Boton_1_1, INPUT);  // Botón para mover servo 1 a la derecha
+  pinMode(Boton_1_2, INPUT);  // Botón para mover servo 1 a la izquierda
   // Configuración inicial de todas las llantas
   digitalWrite(2, HIGH); // Dirección hacia adelante (llanta 1)
   digitalWrite(0, HIGH); // Dirección hacia adelante (llanta 2)
