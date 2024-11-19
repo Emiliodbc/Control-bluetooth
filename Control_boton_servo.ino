@@ -99,6 +99,37 @@ void loop() {
         }
       }
     } else if (mode==1){
-      
+      // Controlar el movimiento según el botón presionado
+      if (comd="B") {
+        // Ambas llantas hacia adelante
+        digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+        analogWrite(5, 100);    // Velocidad de la llanta 1
+        digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+        analogWrite(6, 100);    // Velocidad de la llanta 2
+      } 
+      else if (comd="C") {
+        // Ambas llantas hacia atrás
+        digitalWrite(2, LOW);   // Dirección hacia atrás para llanta 1
+        analogWrite(5, 100);    // Velocidad de la llanta 1
+        digitalWrite(4, HIGH);   // Dirección hacia atrás para llanta 2
+        analogWrite(6, 100);    // Velocidad de la llanta 2
+      } 
+      else if (comd="D") {
+        // Solo la llanta derecha hacia adelante
+        digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+        analogWrite(5, 100);    // Velocidad de la llanta 1
+        analogWrite(6, 0);      // Detener la llanta 2
+      } 
+      else if (comd="E") {
+        // Solo la llanta izquierda hacia adelante
+        digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+        analogWrite(6, 100);    // Velocidad de la llanta 2
+        analogWrite(5, 0);      // Detener la llanta 1
+      } 
+      else {
+        // Detener ambas llantas si no hay botones presionados
+        analogWrite(5, 0);      // Detener llanta 1
+        analogWrite(6, 0);      // Detener llanta 2
+      }
     }
   }
