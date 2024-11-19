@@ -1,5 +1,8 @@
 #include <Servo.h>
 
+//comand word
+String comd;
+
 // Joystick 1
 const int Boton_1_1 = 6;  // Botón para mover servo 1 a la derecha
 const int Boton_1_2 = 7;  // Botón para mover servo 1 a la izquierda
@@ -18,8 +21,8 @@ int servo2_pos = 90;  // Posición inicial del servo 2
 
 void setup() {
   // Conectar servos
-  myservo1.attach(2);  // Servo 1 en pin 2
-  myservo2.attach(3);  // Servo 2 en pin 3
+  myservo1.attach(12);  // Servo 1 en pin 2
+  myservo2.attach(13);  // Servo 2 en pin 3
 
   // Configurar los pines de los botones
   pinMode(Boton_1_1, INPUT);  // Botón para mover servo 1 a la derecha
