@@ -1,62 +1,66 @@
-
-const int Boton_1_1 = 8;  // Botón para mover servo 1 a la derecha
-const int Boton_1_2 = 9;  // Botón para mover servo 1 a la izquierda
-
-const int Boton_2_1 = 7;  // Botón para mover servo 2 a la derecha
-const int Boton_2_2 = 10;  // Botón para mover servo 2 a la izquierda
+// Definición de pines para botones
+const int Boton_1_1 = 8;  // Botón para mover ambas llantas hacia adelante
+const int Boton_1_2 = 9;  // Botón para mover ambas llantas hacia atrás
+const int Boton_2_1 = 7;  // Botón para mover solo la llanta derecha hacia adelante
+const int Boton_2_2 = 10; // Botón para mover solo la llanta izquierda hacia adelante
 
 void setup() {
-  // Configuración de los pines como salida
-  pinMode(2, OUTPUT); // Dirección de la llanta 1
+  // Configuración de pines como salida
+  pinMode(2, OUTPUT); // Dirección de la llanta 1 (derecha)
   pinMode(5, OUTPUT); // Velocidad de la llanta 1
-  pinMode(4, OUTPUT); // Dirección de la llanta 2
+  pinMode(4, OUTPUT); // Dirección de la llanta 2 (izquierda)
   pinMode(6, OUTPUT); // Velocidad de la llanta 2
 
-  // Inicializamos las llantas en LOW
+  // Inicializar llantas apagadas
   digitalWrite(2, LOW);
-  analogWrite(5, 0); // Velocidad = 0
+  analogWrite(5, 0);
   digitalWrite(4, LOW);
-  analogWrite(6, 0); // Velocidad = 0
-  pinMode(Boton_1_1, INPUT);  // Botón para mover servo 1 a la derecha
-  pinMode(Boton_1_2, INPUT);  // Botón para mover servo 1 a la izquierda
-  pinMode(Boton_2_1, INPUT);  // Botón para mover servo 2 a la derecha
-  pinMode(Boton_2_2, INPUT);  // Botón para mover servo 2 a la izquierda
+  analogWrite(6, 0);
+
+  // Configuración de botones como entrada
+  pinMode(Boton_1_1, INPUT);
+  pinMode(Boton_1_2, INPUT);
+  pinMode(Boton_2_1, INPUT);
+  pinMode(Boton_2_2, INPUT);
 }
 
 void loop() {
-bool boton_1_1_estado = digitalRead(Boton_1_1);
-bool boton_1_2_estado = digitalRead(Boton_1_2);
-bool boton_2_1_estado = digitalRead(Boton_2_1);
-bool boton_2_2_estado = digitalRead(Boton_2_2);
-  // Detener todas las llantas
+  // Leer el estado de los botones
+  bool boton_1_1_estado = digitalRead(Boton_1_1);
+  bool boton_1_2_estado = digitalRead(Boton_1_2);
+  bool boton_2_1_estado = digitalRead(Boton_2_1);
+  bool boton_2_2_estado = digitalRead(Boton_2_2);
 
-
-if (boton_1_1_estado == HIGH) {
-  digitalWrite(2, HIGH); 
-  analogWrite(5, 50); // Ruedas a la derecha adelante
-  digitalWrite(4, LOW); 
-  analogWrite(6, 50); // Ruedas a la izquierda adelante
-  }
-if (boton_2_1_estado == HIGH) {
-  digitalWrite(2, HIGH); 
-  analogWrite(5, 50); // Ruedas a la derecha adelante
-  analogWrite(6, 0);      // Detener llanta 2
-  }
- if (boton_2_2_estado == HIGH) {
-  // Izquierda
-   digitalWrite(4, LOW); 
-  analogWrite(6, 50); // Ruedas a la izquierda adelante
-analogWrite(5, 0);      // Detener llanta 1
-  }
-  // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
-  if (boton_1_2_estado == HIGH) {
-    digitalWrite(2, LOW); 
-    analogWrite(5, 50); // Ruedas a la derecha adelante
-    digitalWrite(4, HIGH); 
-    analogWrite(6, 50); //
-  }
-   else {
+  // Controlar el movimiento según el botón presionado
+  if (boton_1_1_estado == HIGH) {
+    // Ambas llantas hacia adelante
+    digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+    analogWrite(5, 100);    // Velocidad de la llanta 1
+    digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+    analogWrite(6, 100);    // Velocidad de la llanta 2
+  } 
+  else if (boton_1_2_estado == HIGH) {
+    // Ambas llantas hacia atrás
+    digitalWrite(2, LOW);   // Dirección hacia atrás para llanta 1
+    analogWrite(5, 100);    // Velocidad de la llanta 1
+    digitalWrite(4, HIGH);   // Dirección hacia atrás para llanta 2
+    analogWrite(6, 100);    // Velocidad de la llanta 2
+  } 
+  else if (boton_2_1_estado == HIGH) {
+    // Solo la llanta derecha hacia adelante
+    digitalWrite(2, HIGH);  // Dirección hacia adelante para llanta 1
+    analogWrite(5, 100);    // Velocidad de la llanta 1
+    analogWrite(6, 0);      // Detener la llanta 2
+  } 
+  else if (boton_2_2_estado == HIGH) {
+    // Solo la llanta izquierda hacia adelante
+    digitalWrite(4, LOW);  // Dirección hacia adelante para llanta 2
+    analogWrite(6, 100);    // Velocidad de la llanta 2
+    analogWrite(5, 0);      // Detener la llanta 1
+  } 
+  else {
+    // Detener ambas llantas si no hay botones presionados
     analogWrite(5, 0);      // Detener llanta 1
     analogWrite(6, 0);      // Detener llanta 2
-   }
+  }
 }
