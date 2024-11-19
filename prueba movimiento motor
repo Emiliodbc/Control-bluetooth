@@ -1,4 +1,4 @@
-// Joystick 1
+
 const int Boton_1_1 = 8;  // Botón para mover servo 1 a la derecha
 const int Boton_1_2 = 9;  // Botón para mover servo 1 a la izquierda
 
@@ -38,10 +38,9 @@ if (boton_1_1_estado == HIGH) {
     analogWrite(5, 50); // Ruedas a la derecha adelante
     digitalWrite(4, HIGH); 
     analogWrite(6, 50); //
-    }
-else
-  digitalWrite(2, LOW);
-  analogWrite(5, 0); // Velocidad = 0
-  digitalWrite(4, LOW);
-  analogWrite(6, 0); // Velocidad = 0
   }
+   else {
+    analogWrite(5, 0);      // Detener llanta 1
+    analogWrite(6, 0);      // Detener llanta 2
+   }
+}
