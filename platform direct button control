@@ -12,8 +12,8 @@ const int Boton_2_1 = 7;  // Botón para mover servo 2 a la derecha
 const int Boton_2_2 = 8;  // Botón para mover servo 2 a la izquierda
 
 //???
-const int Boton_2_1 = 9;  // Botón para mover servo 2 a la derecha
-const int Boton_2_2 = 10;  // Botón para mover servo 2 a la izquierda
+const int Boton_3_1 = 9;  // Botón para mover servo 2 a la derecha
+const int Boton_3_2 = 10;  // Botón para mover servo 2 a la izquierda
 
 // Eliminamos el Boton_3 y Switch, como solicitaste
 
