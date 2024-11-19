@@ -2,6 +2,9 @@
 const int Boton_1_1 = 8;  // Botón para mover servo 1 a la derecha
 const int Boton_1_2 = 9;  // Botón para mover servo 1 a la izquierda
 
+const int Boton_2_1 = 7;  // Botón para mover servo 2 a la derecha
+const int Boton_2_2 = 8;  // Botón para mover servo 2 a la izquierda
+
 void setup() {
   // Configuración de los pines como salida
   pinMode(2, OUTPUT); // Dirección de la llanta 1
