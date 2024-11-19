@@ -21,8 +21,8 @@ int servo2_pos = 90;  // Posición inicial del servo 2
 
 void setup() {
   // Conectar servos
-  myservo1.attach(12);  // Servo 1 en pin 2
-  myservo2.attach(13);  // Servo 2 en pin 3
+  myservo1.attach(12);  // Servo 1 en pin 12 garra
+  myservo2.attach(13);  // Servo 2 en pin 13
 
   // Configurar los pines de los botones
   pinMode(Boton_1_1, INPUT);  // Botón para mover servo 1 a la derecha
