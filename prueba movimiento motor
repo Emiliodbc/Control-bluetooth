@@ -26,6 +26,8 @@ void setup() {
 void loop() {
 bool boton_1_1_estado = digitalRead(Boton_1_1);
 bool boton_1_2_estado = digitalRead(Boton_1_2);
+bool boton_2_1_estado = digitalRead(Boton_2_1);
+bool boton_2_2_estado = digitalRead(Boton_2_2);
   // Detener todas las llantas
 
 
