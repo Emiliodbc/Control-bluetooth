@@ -19,7 +19,8 @@ void setup() {
   analogWrite(6, 0); // Velocidad = 0
   pinMode(Boton_1_1, INPUT);  // Botón para mover servo 1 a la derecha
   pinMode(Boton_1_2, INPUT);  // Botón para mover servo 1 a la izquierda
-  
+  pinMode(Boton_2_1, INPUT);  // Botón para mover servo 2 a la derecha
+  pinMode(Boton_2_2, INPUT);  // Botón para mover servo 2 a la izquierda
 }
 
 void loop() {
@@ -33,10 +34,17 @@ if (boton_1_1_estado == HIGH) {
   analogWrite(5, 50); // Ruedas a la derecha adelante
   digitalWrite(4, LOW); 
   analogWrite(6, 50); // Ruedas a la izquierda adelante
-  // Derecha
+  }
+if (boton_2_1_estado == HIGH) {
   digitalWrite(2, HIGH); 
   analogWrite(5, 50); // Ruedas a la derecha adelante
   analogWrite(6, 0);      // Detener llanta 2
+  }
+ if (boton_2_2_estado == HIGH) {
+  // Izquierda
+   digitalWrite(4, LOW); 
+  analogWrite(6, 50); // Ruedas a la izquierda adelante
+analogWrite(5, 0);      // Detener llanta 1
   }
   // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
   if (boton_1_2_estado == HIGH) {
@@ -44,10 +52,6 @@ if (boton_1_1_estado == HIGH) {
     analogWrite(5, 50); // Ruedas a la derecha adelante
     digitalWrite(4, HIGH); 
     analogWrite(6, 50); //
-  // Izquierda
-   digitalWrite(4, LOW); 
-  analogWrite(6, 50); // Ruedas a la izquierda adelante
-analogWrite(5, 0);      // Detener llanta 1
   }
    else {
     analogWrite(5, 0);      // Detener llanta 1
