@@ -75,5 +75,19 @@ void loop() {
         delay(10);  // Retardo para evitar movimientos bruscos
       }
     }
+    if(comd=="E"){
+      
+  }
+    if(comd=="F"){
+      
+  }
+    if(comd=="G"){
+      
+  }
+    if(comd=="H"){
+      
+  }
+    if(comd=="I"){
+      
   }
 }
