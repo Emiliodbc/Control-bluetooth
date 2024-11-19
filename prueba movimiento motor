@@ -1,0 +1,35 @@
+void setup() {
+  // Configuración de los pines como salida
+  pinMode(2, OUTPUT);  // Dirección de la llanta 1
+  pinMode(5, OUTPUT);  // Velocidad de la llanta 1
+  pinMode(4, OUTPUT);  // Dirección de la llanta 2
+  pinMode(6, OUTPUT);  // Velocidad de la llanta 2
+  pinMode(7, OUTPUT);  // Dirección de la llanta 3
+  pinMode(9, OUTPUT);  // Velocidad de la llanta 3
+  pinMode(8, OUTPUT);  // Dirección de la llanta 4
+  pinMode(10, OUTPUT); // Velocidad de la llanta 4
+
+  // Configuración inicial de todas las llantas
+  digitalWrite(2, HIGH); // Dirección hacia adelante (llanta 1)
+  digitalWrite(0, HIGH); // Dirección hacia adelante (llanta 2)
+  digitalWrite(7, HIGH); // Dirección hacia adelante (llanta 3)
+  digitalWrite(8, HIGH); // Dirección hacia adelante (llanta 4)
+}
+
+void loop() {
+  // Establecer velocidad para todas las llantas (valor PWM = 100)
+  analogWrite(5, 100);  // Velocidad de la llanta 1
+  analogWrite(6, 100);  // Velocidad de la llanta 2
+  analogWrite(9, 100);  // Velocidad de la llanta 3
+  analogWrite(10, 100); // Velocidad de la llanta 4
+
+  delay(5000); // Mantener movimiento durante 5 segundos
+
+  // Detener todas las llantas
+  analogWrite(5, 0);  // Detener llanta 1
+  analogWrite(6, 0);  // Detener llanta 2
+  analogWrite(9, 0);  // Detener llanta 3
+  analogWrite(10, 0); // Detener llanta 4
+
+  delay(5000); // Pausa por 5 segundos antes de repetir
+}
