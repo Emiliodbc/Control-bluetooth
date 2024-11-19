@@ -30,7 +30,10 @@ if (boton_1_1_estado == HIGH) {
   analogWrite(5, 50); // Ruedas a la derecha adelante
   digitalWrite(4, LOW); 
   analogWrite(6, 50); // Ruedas a la izquierda adelante
-  
+  // Derecha
+  digitalWrite(2, HIGH); 
+  analogWrite(5, 50); // Ruedas a la derecha adelante
+  analogWrite(6, 0);      // Detener llanta 2
   }
   // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
   if (boton_1_2_estado == HIGH) {
@@ -38,6 +41,10 @@ if (boton_1_1_estado == HIGH) {
     analogWrite(5, 50); // Ruedas a la derecha adelante
     digitalWrite(4, HIGH); 
     analogWrite(6, 50); //
+  // Izquierda
+   digitalWrite(4, LOW); 
+  analogWrite(6, 50); // Ruedas a la izquierda adelante
+analogWrite(5, 0);      // Detener llanta 1
   }
    else {
     analogWrite(5, 0);      // Detener llanta 1
