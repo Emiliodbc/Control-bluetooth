@@ -20,23 +20,23 @@ void setup() {
 }
 
 void loop() {
+bool boton_1_1_estado = digitalRead(Boton_1_1);
+bool boton_1_2_estado = digitalRead(Boton_1_2);
   // Detener todas las llantas
-  analogWrite(5, 0);  // Detener llanta 1
-  analogWrite(6, 0);  // Detener llanta 2
-  analogWrite(9, 0);  // Detener llanta 3
-  analogWrite(10, 0); // Detener llanta 4
 
-}
+
 if (boton_1_1_estado == HIGH) {
-  // Establecer velocidad para todas las llantas (valor PWM = 100)
-// Configuración inicial de todas las llantas
-  digitalWrite(2, HIGH); // Dirección de la llanta 1 en HIGH
-  analogWrite(5, 100);
+  digitalWrite(2, HIGH); 
+  analogWrite(5, 50); // Ruedas a la derecha adelante
+  digitalWrite(4, LOW); 
+  analogWrite(6, 50); // Ruedas a la izquierda adelante
   
   }
   // Si el botón 1_2 está presionado, mover servo 1 a la izquierda
   if (boton_1_2_estado == HIGH) {
-    digitalWrite(4, HIGH); // Dirección de la llanta 2 en LOW
-    analogWrite(6, 100); 
+    digitalWrite(2, LOW); 
+    analogWrite(5, 50); // Ruedas a la derecha adelante
+    digitalWrite(4, HIGH); 
+    analogWrite(6, 50); //
     }
   }
