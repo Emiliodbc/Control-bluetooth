@@ -9,7 +9,7 @@ int garaOC;
 
 Servo myservo1; // Servo 1 (controla giro)
 Servo myservo2; // Servo 2 (controla subir/bajar)
-Servo myservo2; // Servo 3 (controla garra)
+Servo myservo3; // Servo 3 (controla garra)
 
 int servo1_pos = 90;  // Posición inicial del servo 1
 int servo2_pos = 90;  // Posición inicial del servo 2
@@ -19,7 +19,7 @@ void setup() {
   // Conectar servos
   myservo1.attach(11);  // Servo 1 en pin 11 GIRO
   myservo2.attach(12);  // Servo 2 en pin 12 SUBIR/BAJAR
-  myservo2.attach(13);  // Servo 2 en pin 13 GARRA
+  myservo3.attach(13);  // Servo 2 en pin 13 GARRA
 
   Serial.begin(9600);  // Inicializar comunicación serial (opcional para depuración)
 }
