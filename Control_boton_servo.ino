@@ -93,7 +93,7 @@ void loop() {
           }
           mode=1;
         } else {
-          while(servo_3pos>0){
+          while(servo3_pos>0){
             servo3_pos--;  // Mueve el servo 3 hacia la derecha
             myservo3.write(servo3_pos);
             delay(10);  // Retardo para evitar movimientos bruscos
