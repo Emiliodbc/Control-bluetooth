@@ -88,7 +88,7 @@ void loop() {
         if (garaOC==0){
          while(servo3_pos<180){
             servo3_pos++;  // Mueve el servo 3 hacia la derecha
-            myservo3.write(servo_3pos);
+            myservo3.write(servo3_pos);
             delay(10);  // Retardo para evitar movimientos bruscos
           }
           mode=1;
